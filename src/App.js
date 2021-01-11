@@ -7,6 +7,7 @@ import Rank from './components/rank/rank';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import FaceRecognition from './components/facerecognition/facerecognition';
+import Signin from './components/signin/signin';
 
 const particleOptions = {
   particles: {
@@ -80,6 +81,7 @@ class App extends Component {
       <div className="App">
        <Particles className='particles' params={particleOptions} />
         <Navigation />
+        <Signin />
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit} />
