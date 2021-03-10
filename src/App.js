@@ -43,6 +43,12 @@ class App extends Component {
     this.onRouteChange = this.onRouteChange.bind(this);
   }
 
+  componentDidMount(){
+    fetch('http://localhost:3000/')
+    .then(response => response.json())
+    .then(console.log)
+  }
+
   onInputChange(event){
     const val = event.target.value
     this.setState({
@@ -57,9 +63,9 @@ class App extends Component {
     const height = Number(image.height);
     /* there is an issue with the left and right columns, they are wide and I don't know how to debug this shit! */
     return{
-      leftCol: clarifaiFace.left_col * width,
+      leftCol: (clarifaiFace.left_col * width) + width,
       topRow: clarifaiFace.top_row * height,
-      rightCol: width - (clarifaiFace.right_col * width),
+      rightCol: (width - (clarifaiFace.right_col * width)) + width,
       bottomRow: height - (clarifaiFace.bottom_row * height)
     }
   }
