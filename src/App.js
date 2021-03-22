@@ -34,7 +34,14 @@ class App extends Component {
       imageURL: '',
       box: {},
       route: 'signin',
-      isSignedIn: false
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
     this.onInputChange = this.onInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -95,6 +102,18 @@ class App extends Component {
     })
   }
 
+  loadUser = (data) => {
+    this.setState({
+      user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined
+      }
+    })
+  }
+
   render(){
     const { isSignedIn, imageURL, route, box } = this.state;
 
@@ -110,7 +129,7 @@ class App extends Component {
         </div>
         : (
           route === 'signin' ? <Signin onRouteChange={this.onRouteChange} />
-          : <Register onRouteChange={this.onRouteChange} />
+          : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         )
       }
       </div>
